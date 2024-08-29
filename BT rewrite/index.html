@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Array Methods</title>
+</head>
+<body>
+    <h1>JavaScript Array Methods Examples</h1>
+    <script>
+        // Sample player array and game data
+        const players1 = ['Neuer', 'Pavard', 'Boateng', 'Alaba', 'Davies', 'Kimmich', 'Goretzka', 'Muller', 'Gnabry', 'Lewandowski', 'Perisic'];
+        const game = {
+            scored: ['Lewandowski', 'Gnabry', 'Lewandowski', 'Muller']
+        };
+
+        // Custom Array.prototype method: rewrite
+        Array.prototype.rewrite = function(callback) {
+            return this.map(callback);
+        };
+
+        // Custom Array.prototype method: log
+        Array.prototype.log = function() {
+            console.log(this);
+            return this;
+        };
+
+        // Custom Array.prototype method: toUpperCase
+        Array.prototype.toUpperCase = function() {
+            return this.map(item => item.toUpperCase());
+        };
+
+        // 1. Using custom `rewrite` method
+        const rewrittenPlayers1 = players1.rewrite(player => player.toUpperCase());
+        console.log('Rewritten Players:', rewrittenPlayers1);
+
+        // 2. Using custom `toUpperCase` method (same as the rewrite example)
+        const uppercasedPlayers1 = players1.toUpperCase();
+        console.log('Uppercased Players:', uppercasedPlayers1);
+
+        // 3. Using built-in methods
+        const totalGoals = game.scored.reduce((accumulator, player) => accumulator + 1, 0);
+        console.log(`Total goals scored: ${totalGoals}`);
+
+        // 4. Using built-in `filter` method
+        const playersStartingWithD = players1.filter(player => player.startsWith('D'));
+        console.log('Players starting with "D":', playersStartingWithD);
+
+        // 5. Using built-in `find` method
+        const playerWithK = players1.find(player => player.includes('K'));
+        console.log('First player with "K":', playerWithK);
+
+        // 6. Using built-in `some` method
+        const hasPlayerWithA = players1.some(player => player.includes('a'));
+        console.log(hasPlayerWithA ? 'There is a player with "a" in their name.' : 'No player has "a" in their name.');
+
+        // 7. Using built-in `every` method
+        const allPlayersLongName = players1.every(player => player.length > 5);
+        console.log(allPlayersLongName ? 'All players have names longer than 5 characters.' : 'Not all players have names longer than 5 characters.');
+
+        // 8. Using built-in `flatMap` method
+        const nestedPlayers = [
+            ['Neuer', 'Pavard'],
+            ['Boateng', 'Alaba'],
+            ['Davies', 'Kimmich']
+        ];
+        const flatPlayers = nestedPlayers.flatMap(subArray => subArray);
+        console.log('Flattened Players:', flatPlayers);
+
+        // Example using custom `log` method
+        players1.log();
+        game.scored.log();
+    </script>
+</body>
+</html>

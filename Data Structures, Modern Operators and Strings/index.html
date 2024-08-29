@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Betting App</title>
+</head>
+<body>
+    <h1>Football Betting App</h1>
+
+    <script>
+        // Sample data
+        const game = {
+            odds: {
+                team1: 1.33,
+                draw: 3.25,
+                team2: 6.5,
+            },
+            scored: ['Lewandowski', 'Gnabry', 'Lewandowski', 'Muller']
+        };
+
+        // 1. Create player arrays for each team
+        const players1 = ['Neuer', 'Pavard', 'Boateng', 'Alaba', 'Davies', 'Kimmich', 'Goretzka', 'Muller', 'Gnabry', 'Lewandowski', 'Perisic'];
+        const players2 = ['Burki', 'Schulz', 'Hummels', 'Akanji', 'Hakimi', 'Weigl', 'Brandt', 'Hazard', 'Reus', 'Sancho', 'Gotze'];
+
+        // 2. Separate goalkeeper and field players for Bayern Munich
+        const gk = players1[0];
+        const fieldPlayers = players1.slice(1);
+
+        // 3. Create an array with all players
+        const allPlayers = [...players1, ...players2];
+
+        // 4. Create final team1 array with substitutes
+        const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+
+        // 5. Create variables for odds
+        const { team1, draw, team2 } = game.odds;
+
+        // 6. Function to print goals
+        function printGoals(...players) {
+            console.log(`${players.length} goals were scored by: ${players.join(', ')}`);
+        }
+
+        // Test the function with the provided players
+        printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+        printGoals(...game.scored);
+
+        // 7. Determine which team is more likely to win
+        const likelyWinner = team1 < team2 ? 'Team 1 is more likely to win' : 'Team 2 is more likely to win';
+        console.log(likelyWinner);
+
+    </script>
+</body>
+</html>

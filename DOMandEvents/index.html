@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess My Number</title>
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .number {
+            font-size: 6rem;
+            width: 15rem;
+            background-color: #eee;
+            color: #333;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .message {
+            font-size: 2rem;
+        }
+        .score, .highscore {
+            font-size: 2rem;
+        }
+        .again {
+            background-color: #60b347;
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guess My Number!</h1>
+    <p class="message">Start guessing...</p>
+    <p class="number">?</p>
+    <p>Score: <span class="score">20</span></p>
+    <input type="number" class="guess" placeholder="Enter your guess">
+    <button class="again">Again!</button>
+
+    <script>
+        // Initial values
+        let secretNumber = Math.trunc(Math.random() * 20) + 1;
+        let score = 20;
+
+        // Function to display message
+        function displayMessage(message) {
+            document.querySelector('.message').textContent = message;
+        }
+
+        // Step 1: Attach a click event handler to the "Again!" button
+        document.querySelector('.again').addEventListener('click', function() {
+            // Step 2: Restore initial values
+            score = 20;
+            secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+            // Step 3: Restore initial conditions of UI elements
+            displayMessage('Start guessing...');
+            document.querySelector('.score').textContent = score;
+            document.querySelector('.number').textContent = '?';
+            document.querySelector('.guess').value = '';
+
+            // Step 4: Restore original styles
+            document.querySelector('body').style.backgroundColor = '#222';
+            document.querySelector('.number').style.width = '15rem';
+        });
+
+        // Other game logic will go here...
+    </script>
+</body>
+</html>
